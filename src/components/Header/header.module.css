@@ -9,6 +9,7 @@
 .leftContainer {
   display: flex;
   height: 80px;
+  width: 33%;
 }
 
 .filterItem {
@@ -33,6 +34,10 @@
 
 .centerContainer {
   height: 80px;
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .centerContainer a {
@@ -44,7 +49,9 @@
 
 .rightContainer {
   display: flex;
+  justify-content: flex-end;
   height: 80px;
+  width: 33%;
 }
 
 .currencySwitcher {
@@ -53,6 +60,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.currencySwitcher span {
+  margin-right: 10px;
+  font-size: 18px;
 }
 
 .miniCart {
@@ -61,4 +74,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
