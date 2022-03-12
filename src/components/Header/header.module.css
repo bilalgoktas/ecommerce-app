@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 7%;
+}
+
+.leftContainer {
+  display: flex;
+}
+
+.filterItem {
+  padding: 0 16px;
+  color: #1d1f22;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.filterItem:hover {
+  color: #5ece7b;
+}
+
+.filterItem.active {
+  color: #5ece7b;
+  border-bottom: 1px solid #5ece7b;
+  padding-bottom: 30px;
+}
