@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { Component } from "react";
 import styles from "./header.module.css";
+import Cart from "../../assets/svg/cart.svg";
 
 class Header extends Component {
   render() {
@@ -18,7 +19,9 @@ class Header extends Component {
         </div>
         <div className={styles.rightContainer}>
           <div className={styles.currencySwitcher}>usd</div>
-          <div className={styles.miniCart}>mini cart</div>
+          <div className={styles.miniCart}>
+            <img src={Cart} alt="cart" />
+          </div>
         </div>
       </header>
     );

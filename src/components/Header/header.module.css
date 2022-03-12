@@ -8,6 +8,7 @@
 
 .leftContainer {
   display: flex;
+  height: 80px;
 }
 
 .filterItem {
@@ -15,6 +16,10 @@
   color: #1d1f22;
   font-size: 16px;
   cursor: pointer;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filterItem:hover {
@@ -24,5 +29,36 @@
 .filterItem.active {
   color: #5ece7b;
   border-bottom: 1px solid #5ece7b;
-  padding-bottom: 30px;
+}
+
+.centerContainer {
+  height: 80px;
+}
+
+.centerContainer a {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightContainer {
+  display: flex;
+  height: 80px;
+}
+
+.currencySwitcher {
+  padding: 0 16px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniCart {
+  padding: 0 16px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
