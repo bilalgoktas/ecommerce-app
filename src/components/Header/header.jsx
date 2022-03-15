@@ -6,15 +6,27 @@ import Logo from "../../assets/svg/logo.svg";
 import Arrow from "../../assets/svg/down-arrow.svg";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
   render() {
     return (
       <header className={styles.container}>
         <div className={styles.leftContainer}>
-          <div className={classNames(styles.filterItem, styles.active)}>
-            WOMEN
-          </div>
-          <div className={styles.filterItem}>MEN</div>
-          <div className={styles.filterItem}>KIDS</div>
+          {this.props.categories?.map((category, index) => (
+            <div
+              onClick={() => this.props.updateActiveCategoryIndex(index)}
+              key={index}
+              className={classNames(
+                styles.filterItem,
+                this.props.activeCategoryIndex === index ? styles.active : ""
+              )}
+            >
+              {category.name.toUpperCase()}
+            </div>
+          ))}
         </div>
         <div className={styles.centerContainer}>
           <a href="#">
