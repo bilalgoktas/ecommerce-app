@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header/header";
 import Product from "./components/Product/product";
 import client from "./services/graphqlService";
+import styles from "./App.module.css";
 import {
   categoriesQuery,
   productQuery,
@@ -15,7 +16,7 @@ class App extends Component {
       currencies: [],
       categories: [],
       activeCategoryIndex: 0,
-      activeCurrencyIndex: 0,
+      activeCurrencySymbol: "$",
     };
   }
 
@@ -42,8 +43,8 @@ class App extends Component {
     this.setState({ activeCategoryIndex: index });
   };
 
-  updateActiveCurrencyIndex = (index) => {
-    this.setState({ activeCurrencyIndex: index });
+  updateActiveCurrencySymbol = (symbol) => {
+    this.setState({ activeCurrencySymbol: symbol });
   };
 
   render() {
@@ -52,17 +53,25 @@ class App extends Component {
       <div>
         <Header
           updateActiveCategoryIndex={this.updateActiveCategoryIndex}
-          updateActiveCurrencyIndex={this.updateActiveCurrencyIndex}
+          updateActiveCurrencySymbol={this.updateActiveCurrencySymbol}
           categories={this.state.categories}
           currencies={this.state.currencies}
           activeCategoryIndex={this.state.activeCategoryIndex}
-          activeCurrencyIndex={this.state.activeCurrencyIndex}
+          activeCurrencySymbol={this.state.activeCurrencySymbol}
         />
-        <Product
-          categories={this.state.categories}
-          activeCategoryIndex={this.state.activeCategoryIndex}
-          activeCurrencyIndex={this.state.activeCurrencyIndex}
-        />
+        <div className={styles.productsContainer}>
+          {this.state.categories[this.state.activeCategoryIndex]?.products.map(
+            (product, index) => (
+              <Product
+                key={index}
+                name={product.name}
+                gallery={product.gallery}
+                prices={product.prices}
+                activeCurrencySymbol={this.state.activeCurrencySymbol}
+              />
+            )
+          )}
+        </div>
       </div>
     );
   }

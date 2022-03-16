@@ -20,7 +20,7 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.props.currencies[0]);
+    console.log(this.props.currencies);
     return (
       <header className={styles.container}>
         <div className={styles.leftContainer}>
@@ -52,7 +52,7 @@ class Header extends Component {
                 ? this.props.currencies.map((currency, index) => (
                     <div
                       onClick={() =>
-                        this.props.updateActiveCurrencyIndex(index)
+                        this.props.updateActiveCurrencySymbol(currency.symbol)
                       }
                       className={styles.currencyItem}
                       key={index}
@@ -64,7 +64,12 @@ class Header extends Component {
                 : ""}
             </div>
             <span>
-              {this.props.currencies[this.props.activeCurrencyIndex]?.symbol}
+              {
+                this.props.currencies?.find(
+                  (currency) =>
+                    currency.symbol === this.props.activeCurrencySymbol
+                )?.symbol
+              }
             </span>
             <img src={Arrow} />
           </div>

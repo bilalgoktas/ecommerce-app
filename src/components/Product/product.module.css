@@ -1,8 +1,5 @@
 .container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 7%;
+  width: 33%;
 }
 
 .card {
@@ -11,7 +8,6 @@
   height: 444px;
   margin: 0 20px 103px 20px;
   padding: 16px;
-  border: 1px solid rgb(243, 243, 243);
 }
 
 .greenCart {
@@ -30,11 +26,16 @@
   display: block;
 }
 
-.image {
+.imageContainer {
   width: 354px;
   height: 330px;
   margin-bottom: 24px;
-  border: 1px solid rgb(243, 243, 243);
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .name {

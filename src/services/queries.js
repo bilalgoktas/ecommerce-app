@@ -9,17 +9,11 @@ export const categoriesQuery = gql`
         gallery
         id
         prices {
+          amount
           currency {
             symbol
-          }
-        }
-        prices {
-          currency {
             label
           }
-        }
-        prices {
-          amount
         }
       }
     }
