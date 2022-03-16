@@ -8,10 +8,19 @@ import Arrow from "../../assets/svg/down-arrow.svg";
 class Header extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.state = {
+      switcherClicked: false,
+    };
   }
 
+  handleSwitcher = () => {
+    this.setState((prevState) => ({
+      switcherClicked: !prevState.switcherClicked,
+    }));
+  };
+
   render() {
+    console.log(this.props.currencies[0]);
     return (
       <header className={styles.container}>
         <div className={styles.leftContainer}>
@@ -34,8 +43,29 @@ class Header extends Component {
           </a>
         </div>
         <div className={styles.rightContainer}>
-          <div className={styles.currencySwitcher}>
-            <span>$</span>
+          <div
+            onClick={this.handleSwitcher}
+            className={styles.currencySwitcher}
+          >
+            <div className={styles.currenciesCard}>
+              {this.state.switcherClicked
+                ? this.props.currencies.map((currency, index) => (
+                    <div
+                      onClick={() =>
+                        this.props.updateActiveCurrencyIndex(index)
+                      }
+                      className={styles.currencyItem}
+                      key={index}
+                    >
+                      <span>{currency.symbol}</span>
+                      <span>{currency.label}</span>
+                    </div>
+                  ))
+                : ""}
+            </div>
+            <span>
+              {this.props.currencies[this.props.activeCurrencyIndex]?.symbol}
+            </span>
             <img src={Arrow} />
           </div>
           <div className={styles.miniCart}>

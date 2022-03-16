@@ -2,12 +2,21 @@ import React, { Component } from "react";
 import Header from "./components/Header/header";
 import Product from "./components/Product/product";
 import client from "./services/graphqlService";
-import { categoriesQuery, productQuery } from "./services/queries";
+import {
+  categoriesQuery,
+  productQuery,
+  currenciesQuery,
+} from "./services/queries";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { categories: [], activeCategoryIndex: 0 };
+    this.state = {
+      currencies: [],
+      categories: [],
+      activeCategoryIndex: 0,
+      activeCurrencyIndex: 0,
+    };
   }
 
   componentDidMount() {
@@ -16,6 +25,12 @@ class App extends Component {
         query: categoriesQuery,
       })
       .then((result) => this.setState({ categories: result.data.categories }));
+
+    client
+      .query({
+        query: currenciesQuery,
+      })
+      .then((result) => this.setState({ currencies: result.data.currencies }));
 
     // client.query({
     //   query: productQuery,
@@ -27,26 +42,27 @@ class App extends Component {
     this.setState({ activeCategoryIndex: index });
   };
 
+  updateActiveCurrencyIndex = (index) => {
+    this.setState({ activeCurrencyIndex: index });
+  };
+
   render() {
     console.log(this.state);
     return (
       <div>
         <Header
           updateActiveCategoryIndex={this.updateActiveCategoryIndex}
+          updateActiveCurrencyIndex={this.updateActiveCurrencyIndex}
+          categories={this.state.categories}
+          currencies={this.state.currencies}
+          activeCategoryIndex={this.state.activeCategoryIndex}
+          activeCurrencyIndex={this.state.activeCurrencyIndex}
+        />
+        <Product
           categories={this.state.categories}
           activeCategoryIndex={this.state.activeCategoryIndex}
+          activeCurrencyIndex={this.state.activeCurrencyIndex}
         />
-        <Product />
-        <div>
-          {this.state.categories[this.state.activeCategoryIndex]?.products?.map(
-            (product, index) => (
-              <div key={index}>
-                <img src={product.gallery} />
-                {product.name}
-              </div>
-            )
-          )}
-        </div>
       </div>
     );
   }

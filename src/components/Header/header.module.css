@@ -61,11 +61,23 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+}
+
+.currenciesCard {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  position: absolute;
+  top: 65px;
+  padding: 20px 20px 0 20px;
 }
 
 .currencySwitcher span {
   margin-right: 10px;
   font-size: 18px;
+}
+
+.currencyItem {
+  margin-bottom: 20px;
 }
 
 .miniCart {
