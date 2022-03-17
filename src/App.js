@@ -59,6 +59,12 @@ class App extends Component {
           activeCategoryIndex={this.state.activeCategoryIndex}
           activeCurrencySymbol={this.state.activeCurrencySymbol}
         />
+
+        <h1 className={styles.categoryTitle}>
+          {this.state.categories[
+            this.state.activeCategoryIndex
+          ]?.name.toUpperCase()}
+        </h1>
         <div className={styles.productsContainer}>
           {this.state.categories[this.state.activeCategoryIndex]?.products.map(
             (product, index) => (

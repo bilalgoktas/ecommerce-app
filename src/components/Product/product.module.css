@@ -1,5 +1,7 @@
 .container {
   width: 33%;
+  display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -8,6 +10,7 @@
   height: 444px;
   margin: 0 20px 103px 20px;
   padding: 16px;
+  cursor: pointer;
 }
 
 .greenCart {
@@ -16,6 +19,10 @@
   right: 30px;
   display: none;
   cursor: pointer;
+}
+
+.greenCart:hover {
+  transform: scale(1.05);
 }
 
 .card:hover {

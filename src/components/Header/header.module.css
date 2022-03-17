@@ -69,6 +69,8 @@
   position: absolute;
   top: 65px;
   padding: 20px 20px 0 20px;
+  z-index: 99;
+  background-color: #fff;
 }
 
 .currencySwitcher span {
@@ -78,6 +80,10 @@
 
 .currencyItem {
   margin-bottom: 20px;
+}
+
+.noShow {
+  box-shadow: none;
 }
 
 .miniCart {

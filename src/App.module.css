@@ -1,6 +1,12 @@
 .productsContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0 7%;
+}
+
+.categoryTitle {
+  margin-top: 80px;
+  margin-bottom: 105px;
+  margin-left: 7%;
 }
