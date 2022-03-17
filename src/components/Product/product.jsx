@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styles from "./product.module.css";
 import GreenCart from "../../assets/svg/green-cart.svg";
+import { Link } from "react-router-dom";
 
 class Product extends Component {
   constructor(props) {
@@ -15,16 +16,16 @@ class Product extends Component {
           <div className={styles.imageContainer}>
             <img
               className={styles.image}
-              src={this.props.gallery}
+              src={this.props.product.gallery}
               onError={(e) => {
                 e.target.src = "https://via.placeholder.com/380x445";
               }}
             />
           </div>
 
-          <p className={styles.name}>{this.props.name}</p>
+          <p className={styles.name}>{this.props.product.name}</p>
           <p className={styles.price}>
-            {this.props.prices
+            {this.props.product.prices
               .filter(
                 (price) =>
                   price.currency.symbol === this.props.activeCurrencySymbol

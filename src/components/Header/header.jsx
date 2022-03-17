@@ -20,7 +20,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.props.currencies);
     return (
       <header className={styles.container}>
         <div className={styles.leftContainer}>

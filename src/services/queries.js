@@ -5,15 +5,26 @@ export const categoriesQuery = gql`
     categories {
       name
       products {
+        attributes {
+          name
+          items {
+            value
+            displayValue
+            id
+          }
+        }
+
+        brand
+        description
+        inStock
         name
         gallery
-        id
         prices {
-          amount
           currency {
             symbol
             label
           }
+          amount
         }
       }
     }

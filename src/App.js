@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Header from "./components/Header/header";
 import Product from "./components/Product/product";
+import Details from "./components/Details/details.jsx";
 import client from "./services/graphqlService";
 import styles from "./App.module.css";
+
 import {
   categoriesQuery,
   productQuery,
@@ -65,14 +67,25 @@ class App extends Component {
             this.state.activeCategoryIndex
           ]?.name.toUpperCase()}
         </h1>
+
         <div className={styles.productsContainer}>
           {this.state.categories[this.state.activeCategoryIndex]?.products.map(
             (product, index) => (
               <Product
                 key={index}
-                name={product.name}
-                gallery={product.gallery}
-                prices={product.prices}
+                product={product}
+                activeCurrencySymbol={this.state.activeCurrencySymbol}
+              />
+            )
+          )}
+        </div>
+
+        <div className={styles.detailsContainer}>
+          {this.state.categories[this.state.activeCategoryIndex]?.products.map(
+            (product, index) => (
+              <Details
+                key={index}
+                product={product}
                 activeCurrencySymbol={this.state.activeCurrencySymbol}
               />
             )
@@ -81,6 +94,14 @@ class App extends Component {
       </div>
     );
   }
+}
+
+{
+  /* <Details
+      key={index + 100}
+      product={product}
+      activeCurrencySymbol={this.state.activeCurrencySymbol}
+    /> */
 }
 
 export default App;
