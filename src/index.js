@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import "./index.css";
+import Navigator from "./Navigator";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Navigator />
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -10,22 +10,30 @@ class Product extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <Link
+        className={styles.container}
+        to={{
+          pathname: "/product-detail",
+          search: `?id=${this.props.id}`,
+        }}
+      >
         <div className={styles.card}>
           <img className={styles.greenCart} src={GreenCart} />
           <div className={styles.imageContainer}>
             <img
               className={styles.image}
-              src={this.props.product.gallery}
+              src={this.props.gallery[0]}
               onError={(e) => {
                 e.target.src = "https://via.placeholder.com/380x445";
               }}
             />
           </div>
 
-          <p className={styles.name}>{this.props.product.name}</p>
+          <p className={styles.name}>
+            <span>{this.props.brand}</span> <span>{this.props.name}</span>
+          </p>
           <p className={styles.price}>
-            {this.props.product.prices
+            {this.props.prices
               .filter(
                 (price) =>
                   price.currency.symbol === this.props.activeCurrencySymbol
@@ -37,7 +45,7 @@ class Product extends Component {
               ))}
           </p>
         </div>
-      </div>
+      </Link>
     );
   }
 }

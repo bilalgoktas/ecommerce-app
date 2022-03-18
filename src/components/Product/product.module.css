@@ -2,6 +2,8 @@
   width: 33%;
   display: flex;
   justify-content: center;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 .card {

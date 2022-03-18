@@ -4,16 +4,30 @@ import styles from "./details.module.css";
 class Details extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeImageIndex: 0,
+    };
   }
+
+  updateActiveImageIndex = (index) => {
+    this.setState({ activeImageIndex: index });
+  };
 
   render() {
     console.log(this.props.product.gallery);
     return (
       <div className={styles.container}>
         <div className={styles.galleryContainer}>
-          <img src={this.props.product.gallery[0]} />
-          <img src={this.props.product.gallery[1]} />
-          <img src={this.props.product.gallery[2]} />
+          {this.props.product.gallery?.map((image, index) => (
+            <img
+              onClick={() => this.updateActiveImageIndex(index)}
+              src={image}
+              key={index}
+            />
+          ))}
+        </div>
+        <div className={styles.largeImage}>
+          <img src={this.props.product.gallery[this.state.activeImageIndex]} />
         </div>
         <div className={styles.definitonContainer}>
           <p>{this.props.product.brand}</p>
@@ -38,7 +52,9 @@ class Details extends Component {
               ))}
           </p>
           <button>Add to Cart</button>
-          {this.props.product.description}
+          <span
+            dangerouslySetInnerHTML={{ __html: this.props.product.description }}
+          ></span>
         </div>
       </div>
     );

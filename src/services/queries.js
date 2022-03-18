@@ -5,6 +5,7 @@ export const categoriesQuery = gql`
     categories {
       name
       products {
+        id
         attributes {
           name
           items {
