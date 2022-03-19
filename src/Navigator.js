@@ -60,7 +60,16 @@ class Navigator extends Component {
               />
             }
           />
-          <Route path="/product-detail" element={<ProductDetail />} />
+          <>
+            <Route
+              path="/product-detail"
+              element={
+                <ProductDetail
+                  activeCurrencySymbol={this.state.activeCurrencySymbol}
+                />
+              }
+            />
+          </>
         </Routes>
       </Router>
     );

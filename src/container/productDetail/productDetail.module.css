@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15% 0 7%;
+  margin-top: 80px;
+}
+
+.smallImages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 80px;
+  height: 520px;
+  padding-top: 40px;
+  cursor: pointer;
+}
+
+.smallImages img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px;
+  margin-bottom: 32px;
+}
+
+.largeImage {
+  width: 610px;
+  height: 510px;
+}
+.largeImage img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.detail {
+  width: 292px;
+}
+
+.detail h1 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.detail h2 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 43px;
+}
+
+.attributeName {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.colorPaletteContainer {
+  display: flex;
+  margin: 8px 0 20px 0;
+}
+
+.colorPalette {
+  height: 30px;
+  width: 30px;
+  margin-right: 12px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.colorPalette:focus {
+  outline: 3px solid #b6b6b6;
+}
+
+.attributeValueContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.attributeValue {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  margin-right: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.price {
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.price span {
+  font-size: 24px;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+.button button {
+  width: 292px;
+  height: 52px;
+  background-color: #5ece7b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.description {
+  margin-top: 40px;
+}

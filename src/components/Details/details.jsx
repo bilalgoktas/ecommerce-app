@@ -14,7 +14,6 @@ class Details extends Component {
   };
 
   render() {
-    console.log(this.props.product.gallery);
     return (
       <div className={styles.container}>
         <div className={styles.galleryContainer}>
@@ -34,8 +33,8 @@ class Details extends Component {
           <p>{this.props.product.name}</p>
           <p>{this.props.product.attributes[0]?.name}:</p>
           <p>
-            {this.props.product.attributes[0]?.items.map((item) => (
-              <span>{item.displayValue}</span>
+            {this.props.product.attributes[0]?.items.map((item, index) => (
+              <span key={index}>{item.displayValue}</span>
             ))}
           </p>
           <p>Price:</p>

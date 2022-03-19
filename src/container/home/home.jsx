@@ -9,7 +9,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1 className={styles.categoryTitle}>
@@ -28,18 +27,6 @@ class Home extends Component {
                 name={product.name}
                 gallery={product.gallery}
                 prices={product.prices}
-                activeCurrencySymbol={this.props.activeCurrencySymbol}
-              />
-            )
-          )}
-        </div>
-
-        <div className={styles.detailsContainer}>
-          {this.props.categories[this.props.activeCategoryIndex]?.products.map(
-            (product, index) => (
-              <Details
-                key={index}
-                product={product}
                 activeCurrencySymbol={this.props.activeCurrencySymbol}
               />
             )

@@ -32,13 +32,31 @@ export const categoriesQuery = gql`
   }
 `;
 
-// export const productQuery = gql`
-//   query GetProduct($id: String!) {
-//     product(id: $id) {
-//       name
-//     }
-//   }
-// `;
+export const productQuery = gql`
+  query GetProduct($id: String!) {
+    product(id: $id) {
+      brand
+      name
+      id
+      gallery
+      description
+      attributes {
+        name
+        type
+        items {
+          displayValue
+        }
+      }
+      prices {
+        currency {
+          label
+          symbol
+        }
+        amount
+      }
+    }
+  }
+`;
 
 export const currenciesQuery = gql`
   query GetCurrencies {
