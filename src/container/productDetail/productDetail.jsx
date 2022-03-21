@@ -2,8 +2,10 @@ import React, { Component, Fragment } from "react";
 import { productQuery } from "../../services/queries";
 import client from "../../services/graphqlService";
 import styles from "./productDetail.module.css";
+import classNames from "classnames";
 import { withRouter } from "react-router";
 import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
+import Attribute from "../../components/Attribute/attribute";
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class ProductDetail extends Component {
     this.state = {
       product: {},
       activeImageIndex: 0,
+      activeColorIndex: 0,
+      productAttributes: {},
     };
   }
 
@@ -22,27 +26,44 @@ class ProductDetail extends Component {
         query: productQuery,
         variables: { id },
       })
-      .then((result) => this.setState({ product: result.data.product }));
+      .then((result) => {
+        const existColor = result.data.product.attributes.find(
+          (attribute) => attribute.type === "swatch"
+        );
+        let color = "";
+        if (existColor) {
+          color = existColor.items[0].displayValue;
+        }
+        this.setState({
+          product: result.data.product,
+          productAttributes: { color },
+        });
+      });
   }
 
   updateActiveImageIndex = (index) => {
     this.setState({ activeImageIndex: index });
   };
 
-  updateActiveColor = () => {
-    console.log("active");
+  updateActiveColor = (color) => {
+    this.setState({
+      productAttributes: { ...this.state.productAttributes, color },
+    });
+    console.log(color);
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className={styles.container}>
         <div className={styles.smallImages}>
           {this.state.product.gallery?.map((image, index) => (
             <img
+              tabIndex={0}
               onClick={() => this.updateActiveImageIndex(index)}
               key={index}
               src={image}
-              alt="product image"
+              alt="product"
             />
           ))}
         </div>
@@ -62,13 +83,37 @@ class ProductDetail extends Component {
                 <p className={styles.attributeName} key={index}>
                   {attribute.name.toUpperCase()}:
                 </p>
-                {attribute.type === "swatch" ? (
+                {attribute.type === "swatch" && (
                   <div className={styles.colorPaletteContainer}>
                     {attribute.items.map((item, subIndex) => (
                       <div
-                        tabindex={0}
-                        onClick={this.updateActiveColor}
-                        className={styles.colorPalette}
+                        onClick={() =>
+                          this.updateActiveColor(item.displayValue)
+                        }
+                        className={classNames(
+                          styles.colorPalette,
+                          this.state.productAttributes.color ===
+                            item.displayValue
+                            ? styles.active
+                            : ""
+                        )}
+                        key={subIndex}
+                        style={{ backgroundColor: item.displayValue }}
+                      ></div>
+                    ))}
+                  </div>
+                )}
+                {/* {attribute.type === "swatch" ? (
+                  <div className={styles.colorPaletteContainer}>
+                    {attribute.items.map((item, subIndex) => (
+                      <div
+                        onClick={() => this.updateActiveColorIndex(subIndex)}
+                        className={classNames(
+                          styles.colorPalette,
+                          this.state.activeColorIndex === subIndex
+                            ? styles.active
+                            : ""
+                        )}
                         key={subIndex}
                         style={{ backgroundColor: item.displayValue }}
                       ></div>
@@ -76,13 +121,15 @@ class ProductDetail extends Component {
                   </div>
                 ) : (
                   <div className={styles.attributeValueContainer}>
-                    {attribute.items.map((item) => (
-                      <div className={styles.attributeValue}>
-                        {item.displayValue}
-                      </div>
+                    {attribute.items.map((item, subIndex) => (
+                      <Attribute
+                        key={subIndex}
+                        item={item}
+                        subIndex={subIndex}
+                      />
                     ))}
                   </div>
-                )}
+                )} */}
               </Fragment>
             ))}
           </div>

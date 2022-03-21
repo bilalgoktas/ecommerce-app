@@ -1,0 +1,13 @@
+.attributeValue {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  margin-right: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.attributeValue.active {
+  background-color: #000;
+  color: #fff;
+}

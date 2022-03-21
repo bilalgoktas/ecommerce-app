@@ -24,6 +24,10 @@
   margin-bottom: 32px;
 }
 
+.smallImages img:focus {
+  outline: 1px dotted #000;
+}
+
 .largeImage {
   width: 610px;
   height: 510px;
@@ -68,7 +72,7 @@
   border-radius: 50%;
 }
 
-.colorPalette:focus {
+.colorPalette.active {
   outline: 3px solid #b6b6b6;
 }
 
@@ -77,15 +81,6 @@
   justify-content: flex-start;
   margin-top: 8px;
   margin-bottom: 20px;
-}
-
-.attributeValue {
-  display: flex;
-  align-items: center;
-  border: 1px solid #000;
-  margin-right: 12px;
-  padding: 12px 24px;
-  cursor: pointer;
 }
 
 .price {
