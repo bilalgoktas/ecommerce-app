@@ -93,6 +93,8 @@ class Navigator extends Component {
                 categories={this.state.categories}
                 activeCategoryIndex={this.state.activeCategoryIndex}
                 activeCurrencySymbol={this.state.activeCurrencySymbol}
+                updateCart={this.updateCart}
+                cart={this.state.cart}
               />
             }
           />

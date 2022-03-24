@@ -7,6 +7,7 @@ export const categoriesQuery = gql`
       products {
         id
         attributes {
+          type
           name
           items {
             value
@@ -16,7 +17,7 @@ export const categoriesQuery = gql`
         }
 
         brand
-        description
+
         inStock
         name
         gallery

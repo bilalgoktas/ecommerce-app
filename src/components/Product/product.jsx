@@ -8,6 +8,20 @@ class Product extends Component {
     super(props);
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+  };
+
+  updateQuantity = (product, productAttributes) => {
+    this.props.cart.find(
+      (item) =>
+        (item.name === product.name) &
+        (JSON.stringify(item.attributes) === JSON.stringify(productAttributes))
+    ).quantity++;
+
+    localStorage.setItem("cart", JSON.stringify(this.props.cart));
+  };
+
   render() {
     return (
       <Link
@@ -18,7 +32,43 @@ class Product extends Component {
         }}
       >
         <div className={styles.card}>
-          <img className={styles.greenCart} src={GreenCart} />
+          <img
+            onClick={(e) => {
+              this.handleClick(e);
+              const productAttributes = {
+                color:
+                  this.props.product.attributes.find(
+                    (att) => att.name === "swatch"
+                  )?.items[0].displayValue || "",
+                attributes: this.props.product.attributes
+                  .filter((att) => att.type !== "swatch")
+                  .map((a) => {
+                    return {
+                      name: a.name,
+                      value: a.items[0].displayValue,
+                    };
+                  }),
+              };
+
+              return this.props.cart.some(
+                (item) =>
+                  (item.name === this.props.product.name) &
+                  (JSON.stringify(item.attributes) ===
+                    JSON.stringify(productAttributes))
+              )
+                ? (this.updateQuantity(this.props.product, productAttributes),
+                  alert(
+                    "The item has been added to cart with default options. In order to select different options (size, capacity, color etc.) please go to product detail page!"
+                  ))
+                : (this.props.updateCart(this.props.product, productAttributes),
+                  alert(
+                    "The item has been added to cart with default options. In order to select different options (size, capacity, color etc.) please go to product detail page!"
+                  ));
+            }}
+            className={styles.greenCart}
+            src={GreenCart}
+          />
+
           <div className={styles.imageContainer}>
             <img
               className={styles.image}

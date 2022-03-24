@@ -26,6 +26,9 @@
 .greenCart:hover {
   transform: scale(1.05);
 }
+.greenCart:active {
+  transform: scale(0.98);
+}
 
 .card:hover {
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);

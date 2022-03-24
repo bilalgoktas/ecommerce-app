@@ -21,6 +21,9 @@ class Home extends Component {
           {this.props.categories[this.props.activeCategoryIndex]?.products.map(
             (product, index) => (
               <Product
+                cart={this.props.cart}
+                updateCart={this.props.updateCart}
+                product={product}
                 key={index}
                 id={product.id}
                 brand={product.brand}
