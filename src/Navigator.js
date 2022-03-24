@@ -60,6 +60,17 @@ class Navigator extends Component {
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
   };
 
+  removeFromCart = async (product) => {
+    await this.setState({
+      cart: this.state.cart.filter(
+        (a) =>
+          JSON.stringify(a.attributes) !== JSON.stringify(product.attributes)
+      ),
+    });
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+    window.location.reload(false);
+  };
+
   render() {
     console.log(this.state.cart);
     return (
@@ -99,6 +110,7 @@ class Navigator extends Component {
             path="/cart"
             element={
               <Cart
+                removeFromCart={this.removeFromCart}
                 cart={this.state.cart}
                 activeCurrencySymbol={this.state.activeCurrencySymbol}
               />

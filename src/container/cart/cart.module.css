@@ -82,8 +82,15 @@
   font-size: 24px;
 }
 
-.rightContainer img {
+.productImage {
   width: 140px;
   height: 185px;
+  object-fit: cover;
   margin-left: 12px;
+}
+
+.remove {
+  width: 24px;
+  margin-left: 16px;
+  cursor: pointer;
 }

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styles from "./cart.module.css";
+import Remove from "../../assets/svg/trash-bin.svg";
 
 class Cart extends Component {
   constructor(props) {
@@ -78,7 +79,16 @@ class Cart extends Component {
                 </button>
               </div>
 
-              <img src={product.gallery} />
+              <img className={styles.productImage} src={product.gallery} />
+              <img
+                className={styles.remove}
+                src={Remove}
+                onClick={() =>
+                  window.confirm(
+                    "Are you sure you want to remove the item from the cart?"
+                  ) && this.props.removeFromCart(product)
+                }
+              />
             </div>
           </div>
         ))}
