@@ -1,0 +1,89 @@
+.title {
+  margin-top: 80px;
+  margin-bottom: 60px;
+  margin-left: 7%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 7%;
+  margin-right: 15%;
+  padding: 20px 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leftContainer h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.leftContainer h2 {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.colorAttribute {
+  display: flex;
+  /* align-items: center; */
+}
+
+.colorSample {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin: 0 4px;
+  outline: 1px solid #b6b6b6;
+}
+
+.attribute {
+  margin-bottom: 2px;
+}
+
+.rightContainer {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.quantityContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantityContainer button {
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  background-color: #fff;
+  color: #1d1f22;
+  border: 1px solid #1d1f22;
+  cursor: pointer;
+}
+
+.quantityContainer button:active {
+  transform: scale(0.98);
+}
+
+.quantityContainer p {
+  font-size: 24px;
+}
+
+.rightContainer img {
+  width: 140px;
+  height: 185px;
+  margin-left: 12px;
+}

@@ -83,6 +83,20 @@
   margin-bottom: 20px;
 }
 
+.attributeValue {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  margin-right: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.attributeValue.active {
+  background-color: #000;
+  color: #fff;
+}
+
 .price {
   margin-top: 40px;
   font-size: 18px;
@@ -95,15 +109,16 @@
 
 .button {
   margin-top: 20px;
-}
-
-.button button {
   width: 292px;
   height: 52px;
   background-color: #5ece7b;
   color: #fff;
   border: none;
   cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.98);
 }
 
 .description {

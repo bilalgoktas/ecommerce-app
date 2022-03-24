@@ -4,6 +4,7 @@ import styles from "./header.module.css";
 import Cart from "../../assets/svg/cart.svg";
 import Logo from "../../assets/svg/logo.svg";
 import Arrow from "../../assets/svg/down-arrow.svg";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -72,9 +73,11 @@ class Header extends Component {
             </span>
             <img src={Arrow} />
           </div>
-          <div className={styles.miniCart}>
-            <img src={Cart} alt="cart" />
-          </div>
+          <Link to={{ pathname: "/cart" }}>
+            <div className={styles.miniCart}>
+              <img src={Cart} alt="cart" />
+            </div>
+          </Link>
         </div>
       </header>
     );
