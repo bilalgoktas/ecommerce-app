@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styles from "./cart.module.css";
 import Remove from "../../assets/svg/trash-bin.svg";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
   constructor(props) {
@@ -16,8 +17,16 @@ class Cart extends Component {
         {this.props.cart.map((product, index) => (
           <div className={styles.container} key={index}>
             <div className={styles.leftContainer}>
-              <h1>{product.brand}</h1>
-              <h2>{product.name}</h2>
+              <Link
+                className={styles.link}
+                to={{
+                  pathname: "/product-detail",
+                  search: `?id=${product.id}`,
+                }}
+              >
+                <h1>{product.brand}</h1>
+                <h2>{product.name}</h2>
+              </Link>
               <div>
                 {product.prices
                   ?.filter(

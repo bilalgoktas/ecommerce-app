@@ -48,6 +48,7 @@ class Navigator extends Component {
       cart: [
         ...this.state.cart,
         {
+          id: product.id,
           brand: product.brand,
           name: product.name,
           gallery: product.gallery[0],
