@@ -44,16 +44,6 @@ class Navigator extends Component {
   };
 
   updateCart = async (product, productAttributes) => {
-    // this.state.cart.some(
-    //   (item) =>
-    //     // let itemQuantity = item.quantity;
-    //     (item.name === product.name) & (item.attributes === productAttributes)
-    // )
-    //   ? this.state.cart.find(
-    //       (item) =>
-    //         (item.name === product.name) &
-    //         (item.attributes === productAttributes)
-    //     ) :
     await this.setState({
       cart: [
         ...this.state.cart,
@@ -70,13 +60,6 @@ class Navigator extends Component {
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
   };
 
-  // updateQuantity = () => {
-  //   this.state.cart.some((item) => {
-  //     let itemQuantity = item.quantity;
-  //     (item.name === product.name) & (item.attributes === productAttributes) &&
-  //       itemQuantity++;
-  //   });
-  // };
   render() {
     console.log(this.state.cart);
     return (

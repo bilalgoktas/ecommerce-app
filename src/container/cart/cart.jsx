@@ -53,7 +53,11 @@ class Cart extends Component {
               <div className={styles.quantityContainer}>
                 <button
                   onClick={() => {
-                    product.quantity++;
+                    product.quantity < 99 && product.quantity++;
+                    localStorage.setItem(
+                      "cart",
+                      JSON.stringify(this.props.cart)
+                    );
                     this.forceUpdate();
                   }}
                 >
@@ -62,7 +66,11 @@ class Cart extends Component {
                 <p>{product.quantity}</p>
                 <button
                   onClick={() => {
-                    product.quantity--;
+                    product.quantity > 1 && product.quantity--;
+                    localStorage.setItem(
+                      "cart",
+                      JSON.stringify(this.props.cart)
+                    );
                     this.forceUpdate();
                   }}
                 >

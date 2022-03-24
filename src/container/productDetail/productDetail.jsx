@@ -3,8 +3,6 @@ import { productQuery } from "../../services/queries";
 import client from "../../services/graphqlService";
 import styles from "./productDetail.module.css";
 import classNames from "classnames";
-import { withRouter } from "react-router";
-import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -58,16 +56,6 @@ class ProductDetail extends Component {
   };
 
   render() {
-    // console.log(
-    //   // this.props.cart.some(
-    //   //   (item) =>
-    //   //     (item.name === this.state.product.name) &
-    //   //     (item.attributes.attributes[0] ===
-    //   //       this.state.productAttributes.attributes)
-    //   // )
-    //   this.state.productAttributes.attributes
-    // );
-
     return (
       <div className={styles.container}>
         <div className={styles.smallImages}>
@@ -180,27 +168,34 @@ class ProductDetail extends Component {
           </div>
           <div
             onClick={
-              // this.props.cart.some(
-              //   (item) =>
-              //     (item.name === this.state.product.name) &
-              //     (item.attributes === this.state.productAttributes)
-              // )
-              //   ? () => {
-              //       console.log(
-              //         this.props.cart.find(
-              //           (item) =>
-              //             (item.name === this.state.product.name) &
-              //             (item.attributes === this.state.productAttributes)
-              //         )
-              //       );
-              //     } :
-              async () => {
-                await this.props.updateCart(
-                  this.state.product,
-                  this.state.productAttributes
-                );
-                window.location.reload(false);
-              }
+              this.props.cart.some(
+                (item) =>
+                  (item.name === this.state.product.name) &
+                  (JSON.stringify(item.attributes) ===
+                    JSON.stringify(this.state.productAttributes))
+              )
+                ? async () => {
+                    await this.props.cart.find(
+                      (item) =>
+                        (item.name === this.state.product.name) &
+                        (JSON.stringify(item.attributes) ===
+                          JSON.stringify(this.state.productAttributes))
+                    ).quantity++;
+
+                    await localStorage.setItem(
+                      "cart",
+                      JSON.stringify(this.props.cart)
+                    );
+
+                    window.location.reload(false);
+                  }
+                : async () => {
+                    await this.props.updateCart(
+                      this.state.product,
+                      this.state.productAttributes
+                    );
+                    window.location.reload(false);
+                  }
             }
           >
             <button className={styles.button}>ADD TO CART</button>
