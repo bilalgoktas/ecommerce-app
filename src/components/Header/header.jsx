@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import styles from "./header.module.css";
 import Cart from "../../assets/svg/cart.svg";
 import Logo from "../../assets/svg/logo.svg";
-import Arrow from "../../assets/svg/down-arrow.svg";
+import DownArrow from "../../assets/svg/down-arrow.svg";
+import UpArrow from "../../assets/svg/up-arrow.svg";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
@@ -11,12 +12,19 @@ class Header extends Component {
     super(props);
     this.state = {
       switcherClicked: false,
+      cartClicked: false,
     };
   }
 
   handleSwitcher = () => {
     this.setState((prevState) => ({
       switcherClicked: !prevState.switcherClicked,
+    }));
+  };
+
+  handleCart = () => {
+    this.setState((prevState) => ({
+      cartClicked: !prevState.cartClicked,
     }));
   };
 
@@ -47,22 +55,6 @@ class Header extends Component {
             onClick={this.handleSwitcher}
             className={styles.currencySwitcher}
           >
-            <div className={styles.currenciesCard}>
-              {this.state.switcherClicked
-                ? this.props.currencies.map((currency, index) => (
-                    <div
-                      onClick={() =>
-                        this.props.updateActiveCurrencySymbol(currency.symbol)
-                      }
-                      className={styles.currencyItem}
-                      key={index}
-                    >
-                      <span>{currency.symbol}</span>
-                      <span>{currency.label}</span>
-                    </div>
-                  ))
-                : ""}
-            </div>
             <span>
               {
                 this.props.currencies?.find(
@@ -71,8 +63,25 @@ class Header extends Component {
                 )?.symbol
               }
             </span>
-            <img src={Arrow} />
+            <img src={this.state.switcherClicked ? UpArrow : DownArrow} />
+            {this.state.switcherClicked && (
+              <div className={styles.currenciesCard}>
+                {this.props.currencies.map((currency, index) => (
+                  <p
+                    onClick={() =>
+                      this.props.updateActiveCurrencySymbol(currency.symbol)
+                    }
+                    className={styles.currencyItem}
+                    key={index}
+                  >
+                    <span>{currency.symbol} </span>
+                    <span>{currency.label}</span>
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
+
           <Link to={{ pathname: "/cart" }}>
             <div className={styles.miniCart}>
               <img src={Cart} alt="cart" />
