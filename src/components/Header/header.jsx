@@ -103,7 +103,7 @@ class Header extends Component {
                   My Cart,{" "}
                   {this.props.cart
                     .map((item) => item.quantity)
-                    .reduce((a, b) => a + b)}{" "}
+                    .reduce((a, b) => a + b, 0)}{" "}
                   items
                   <span onClick={this.handleCart} style={{ cursor: "pointer" }}>
                     X
@@ -224,7 +224,7 @@ class Header extends Component {
                               )
                               ?.map((price) => price.amount)
                         )
-                        .reduce((a, b) => a + b)
+                        .reduce((a, b) => a + b, 0)
                         .toFixed(2)}
                     </p>
                   </div>
