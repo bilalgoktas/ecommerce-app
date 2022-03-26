@@ -15,6 +15,7 @@ class Navigator extends Component {
       activeCategoryIndex: 0,
       activeCurrencySymbol: "$",
       cart: [],
+      totalPrice: 0,
     };
   }
 
@@ -33,6 +34,16 @@ class Navigator extends Component {
         query: currenciesQuery,
       })
       .then((result) => this.setState({ currencies: result.data.currencies }));
+
+    this.state.cart.forEach((item) => {
+      this.state.totalPrice +=
+        item.quantity *
+        item.prices
+          ?.filter(
+            (price) => price.currency.symbol === this.props.activeCurrencySymbol
+          )
+          ?.map((price) => price.amount);
+    });
   }
 
   updateActiveCategoryIndex = (index) => {
@@ -83,6 +94,8 @@ class Navigator extends Component {
           currencies={this.state.currencies}
           activeCategoryIndex={this.state.activeCategoryIndex}
           activeCurrencySymbol={this.state.activeCurrencySymbol}
+          cart={this.state.cart}
+          totalPrice={this.state}
         />
 
         <Routes>
