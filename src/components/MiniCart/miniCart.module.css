@@ -1,0 +1,133 @@
+.miniCart {
+  height: 540px;
+  width: 325px;
+  z-index: 100;
+  position: absolute;
+  top: 80px;
+  right: 7%;
+  padding: 16px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+}
+
+.cartTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.items {
+  max-height: 315px;
+  overflow-y: auto;
+}
+
+.itemContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.price {
+  font-weight: 600;
+}
+
+.leftContainer h1,
+.leftContainer h2 {
+  font-size: 16px;
+  font-weight: 300;
+  color: #1d1f22;
+  margin-bottom: 6px;
+  width: 136px;
+}
+
+.attributesContainer {
+  width: 136px;
+}
+.colorAttribute {
+  display: flex;
+}
+
+.colorSample {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin: 0 4px;
+  outline: 1px solid #b6b6b6;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+}
+
+.quantityContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.quantityContainer button {
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
+  border: 1px solid #1d1f22;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quantityContainer button:active {
+  transform: scale(0.98);
+}
+
+.productImage {
+  height: 137px;
+  width: 105px;
+  object-fit: cover;
+}
+
+.totalPriceContainer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+
+.buttonContainer button {
+  width: 140px;
+  height: 43px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.viewBag {
+  color: #1d1f22;
+  background-color: #fff;
+  border: 1px solid #1d1f22;
+}
+
+.checkOut {
+  color: #fff;
+  background-color: #5ece7b;
+  border: none;
+}
