@@ -10,7 +10,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1 className={styles.title}>CART</h1>

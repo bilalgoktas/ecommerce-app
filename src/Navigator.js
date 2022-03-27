@@ -6,6 +6,7 @@ import Home from "./container/home/home";
 import ProductDetail from "./container/productDetail/productDetail";
 import client from "./services/graphqlService";
 import { categoriesQuery, currenciesQuery } from "./services/queries";
+
 class Navigator extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,11 @@ class Navigator extends Component {
   componentDidMount() {
     localStorage.getItem("cart") &&
       this.setState({ cart: JSON.parse(localStorage.getItem("cart")) });
+
+    localStorage.getItem("activeCurrencySymbol") &&
+      this.setState({
+        activeCurrencySymbol: localStorage.getItem("activeCurrencySymbol"),
+      });
 
     client
       .query({
@@ -50,8 +56,12 @@ class Navigator extends Component {
     this.setState({ activeCategoryIndex: index });
   };
 
-  updateActiveCurrencySymbol = (symbol) => {
-    this.setState({ activeCurrencySymbol: symbol });
+  updateActiveCurrencySymbol = async (symbol) => {
+    await this.setState({ activeCurrencySymbol: symbol });
+    localStorage.setItem(
+      "activeCurrencySymbol",
+      this.state.activeCurrencySymbol
+    );
   };
 
   updateCart = async (product, productAttributes) => {
@@ -84,7 +94,6 @@ class Navigator extends Component {
   };
 
   render() {
-    console.log(this.state.cart);
     return (
       <Router>
         <Header

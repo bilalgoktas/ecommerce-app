@@ -5,7 +5,6 @@ import Cart from "../../assets/svg/cart.svg";
 import Logo from "../../assets/svg/logo.svg";
 import DownArrow from "../../assets/svg/down-arrow.svg";
 import UpArrow from "../../assets/svg/up-arrow.svg";
-import Remove from "../../assets/svg/trash-bin.svg";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
@@ -31,7 +30,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log(JSON.stringify(this.props.cart));
     return (
       <header className={styles.container}>
         <div className={styles.headerLeftContainer}>
@@ -85,7 +83,6 @@ class Header extends Component {
             )}
           </div>
 
-          {/* <Link to={{ pathname: "/cart" }}> */}
           <div className={styles.miniCartContainer}>
             <div onClick={this.handleCart} className={styles.cartIcon}>
               <img src={Cart} alt="cart" />
@@ -194,15 +191,6 @@ class Header extends Component {
                           className={styles.productImage}
                           src={product.gallery}
                         />
-                        {/* <img
-                        className={styles.remove}
-                        src={Remove}
-                        onClick={() =>
-                          window.confirm(
-                            "Are you sure you want to remove the item from the cart?"
-                          ) && this.props.removeFromCart(product)
-                        }
-                      /> */}
                       </div>
                     </div>
                   ))}
@@ -243,7 +231,6 @@ class Header extends Component {
               </div>
             )}
           </div>
-          {/* </Link> */}
         </div>
       </header>
     );

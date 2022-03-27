@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Product from "../../components/Product/product";
-import Details from "../../components/Details/details.jsx";
 import styles from "./home.module.css";
 
 class Home extends Component {
@@ -38,14 +37,6 @@ class Home extends Component {
       </div>
     );
   }
-}
-
-{
-  /* <Details
-      key={index + 100}
-      product={product}
-      activeCurrencySymbol={this.props.activeCurrencySymbol}
-    /> */
 }
 
 export default Home;
