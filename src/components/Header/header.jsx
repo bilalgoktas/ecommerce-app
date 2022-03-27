@@ -33,7 +33,7 @@ class Header extends Component {
   render() {
     return (
       <header className={styles.container}>
-        <div className={styles.headerLeftContainer}>
+        <div className={styles.leftContainer}>
           {this.props.categories?.map((category, index) => (
             <Link key={index} className={styles.link} to={{ pathname: "/" }}>
               <div
@@ -48,12 +48,12 @@ class Header extends Component {
             </Link>
           ))}
         </div>
-        <div className={styles.headerCenterContainer}>
+        <div className={styles.centerContainer}>
           <Link to={{ pathname: "/" }}>
             <img src={Logo} alt="logo" />
           </Link>
         </div>
-        <div className={styles.headerRightContainer}>
+        <div className={styles.rightContainer}>
           <div
             onClick={this.handleSwitcher}
             className={styles.currencySwitcher}
