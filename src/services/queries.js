@@ -41,6 +41,7 @@ export const productQuery = gql`
       id
       gallery
       description
+      inStock
       attributes {
         name
         type

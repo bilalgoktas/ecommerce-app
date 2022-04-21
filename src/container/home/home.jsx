@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Product from "../../components/Product/product";
 import styles from "./home.module.css";
 
-class Home extends Component {
+class Home extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -29,6 +29,7 @@ class Home extends Component {
                 name={product.name}
                 gallery={product.gallery}
                 prices={product.prices}
+                inStock={product.inStock}
                 activeCurrencySymbol={this.props.activeCurrencySymbol}
               />
             )

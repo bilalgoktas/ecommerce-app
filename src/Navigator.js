@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/header";
 import Cart from "./container/cart/cart";
@@ -7,7 +7,7 @@ import ProductDetail from "./container/productDetail/productDetail";
 import client from "./services/graphqlService";
 import { categoriesQuery, currenciesQuery } from "./services/queries";
 
-class Navigator extends Component {
+class Navigator extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,6 +105,7 @@ class Navigator extends Component {
           activeCurrencySymbol={this.state.activeCurrencySymbol}
           cart={this.state.cart}
           totalPrice={this.state}
+          removeFromCart={this.removeFromCart}
         />
 
         <Routes>

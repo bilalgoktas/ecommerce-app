@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import styles from "./header.module.css";
 import Cart from "../../assets/svg/cart.svg";
 import Logo from "../../assets/svg/logo.svg";
@@ -8,7 +8,7 @@ import UpArrow from "../../assets/svg/up-arrow.svg";
 import { Link } from "react-router-dom";
 import MiniCart from "../MiniCart/miniCart";
 
-class Header extends Component {
+class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,9 +98,14 @@ class Header extends Component {
             </div>
             {this.state.cartClicked && (
               <MiniCart
+                cartClicked={this.state.cartClicked}
+                onClickOutside={() => {
+                  this.setState({ cartClicked: false });
+                }}
                 cart={this.props.cart}
                 handleCart={this.handleCart}
                 activeCurrencySymbol={this.props.activeCurrencySymbol}
+                removeFromCart={this.props.removeFromCart}
               />
             )}
           </div>

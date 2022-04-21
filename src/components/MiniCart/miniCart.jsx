@@ -1,24 +1,39 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import styles from "./miniCart.module.css";
 import { Link } from "react-router-dom";
 
-class MiniCart extends Component {
+class MiniCart extends PureComponent {
   constructor(props) {
     super(props);
+    this.ref = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  handleClickOutside(event) {
+    if (this.ref.current && !this.ref.current.contains(event.target)) {
+      this.props.onClickOutside && this.props.onClickOutside();
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("click", this.handleClickOutside, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleClickOutside, true);
   }
 
   render() {
+    if (!this.props.cartClicked) return null;
+
     return (
-      <div className={styles.miniCart}>
+      <div ref={this.ref} className={styles.miniCart}>
         <p className={styles.cartTitle}>
           My Cart,{" "}
           {this.props.cart
             .map((item) => item.quantity)
             .reduce((a, b) => a + b, 0)}{" "}
           items
-          <span onClick={this.props.handleCart} style={{ cursor: "pointer" }}>
-            X
-          </span>
         </p>
         <div className={styles.items}>
           {this.props.cart.map((product, index) => (
@@ -44,7 +59,7 @@ class MiniCart extends Component {
                     ?.map((price) => (
                       <p className={styles.price} key={price.currency.symbol}>
                         <span>{price.currency.symbol}</span>
-                        {price.amount}
+                        {Number(price.amount).toFixed(2)}
                       </p>
                     ))}
                 </div>
@@ -86,12 +101,15 @@ class MiniCart extends Component {
                   <p>{product.quantity}</p>
                   <button
                     onClick={() => {
-                      product.quantity > 1 && product.quantity--;
+                      product.quantity > 1
+                        ? product.quantity--
+                        : window.confirm(
+                            "Are you sure you want to remove the item from the cart?"
+                          ) && this.props.removeFromCart(product);
                       localStorage.setItem(
                         "cart",
                         JSON.stringify(this.props.cart)
                       );
-                      this.forceUpdate();
                     }}
                   >
                     -
@@ -108,25 +126,29 @@ class MiniCart extends Component {
             <p>Total</p>
             <p>
               <span>{this.props.activeCurrencySymbol}</span>
-              {this.props.cart
-                .map(
-                  (item) =>
-                    item.quantity *
-                    item.prices
-                      ?.filter(
-                        (price) =>
-                          price.currency.symbol ===
-                          this.props.activeCurrencySymbol
-                      )
-                      ?.map((price) => price.amount)
-                )
-                .reduce((a, b) => a + b, 0)
-                .toFixed(2)}
+              {Number(
+                this.props.cart
+                  .map(
+                    (item) =>
+                      item.quantity *
+                      item.prices
+                        ?.filter(
+                          (price) =>
+                            price.currency.symbol ===
+                            this.props.activeCurrencySymbol
+                        )
+                        ?.map((price) => price.amount)
+                  )
+                  .reduce((a, b) => a + b, 0)
+              ).toFixed(2)}
             </p>
           </div>
           <div className={styles.buttonContainer}>
             <Link to={{ pathname: "/cart" }}>
-              <button className={styles.viewBag} onClick={this.handleCart}>
+              <button
+                className={styles.viewBag}
+                onClick={this.props.handleCart}
+              >
                 VIEW BAG
               </button>
             </Link>

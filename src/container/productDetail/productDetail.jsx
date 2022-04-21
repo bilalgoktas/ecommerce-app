@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { productQuery } from "../../services/queries";
 import client from "../../services/graphqlService";
 import styles from "./productDetail.module.css";
 import classNames from "classnames";
+import parse from "html-react-parser";
 
-class ProductDetail extends Component {
+class ProductDetail extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -161,7 +162,8 @@ class ProductDetail extends Component {
                 )
                 ?.map((price) => (
                   <Fragment key={price.currency.symbol}>
-                    <span>{price.currency.symbol}</span> {price.amount}
+                    <span>{price.currency.symbol}</span>{" "}
+                    {Number(price.amount).toFixed(2)}
                   </Fragment>
                 ))}
             </p>
@@ -202,11 +204,7 @@ class ProductDetail extends Component {
           </div>
 
           <div className={styles.description}>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: this.state.product.description,
-              }}
-            ></span>
+            <span>{parse(`${this.state.product.description}`)}</span>
           </div>
         </div>
       </div>

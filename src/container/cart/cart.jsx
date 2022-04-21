@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import styles from "./cart.module.css";
 import Remove from "../../assets/svg/trash-bin.svg";
 import { Link } from "react-router-dom";
 
-class Cart extends Component {
+class Cart extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,7 +35,7 @@ class Cart extends Component {
                   ?.map((price) => (
                     <p className={styles.price} key={price.currency.symbol}>
                       <span>{price.currency.symbol}</span>
-                      {price.amount}
+                      {Number(price.amount).toFixed(2)}
                     </p>
                   ))}
               </div>
@@ -75,7 +75,11 @@ class Cart extends Component {
                 <p>{product.quantity}</p>
                 <button
                   onClick={() => {
-                    product.quantity > 1 && product.quantity--;
+                    product.quantity > 1
+                      ? product.quantity--
+                      : window.confirm(
+                          "Are you sure you want to remove the item from the cart?"
+                        ) && this.props.removeFromCart(product);
                     localStorage.setItem(
                       "cart",
                       JSON.stringify(this.props.cart)
@@ -88,15 +92,6 @@ class Cart extends Component {
               </div>
 
               <img className={styles.productImage} src={product.gallery} />
-              <img
-                className={styles.remove}
-                src={Remove}
-                onClick={() =>
-                  window.confirm(
-                    "Are you sure you want to remove the item from the cart?"
-                  ) && this.props.removeFromCart(product)
-                }
-              />
             </div>
           </div>
         ))}

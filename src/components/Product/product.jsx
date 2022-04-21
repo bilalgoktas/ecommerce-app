@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import styles from "./product.module.css";
 import GreenCart from "../../assets/svg/green-cart.svg";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 
-class Product extends Component {
+class Product extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -25,7 +26,10 @@ class Product extends Component {
   render() {
     return (
       <Link
-        className={styles.container}
+        className={classNames(
+          styles.container,
+          !this.props.inStock && styles.outOfStock
+        )}
         to={{
           pathname: "/product-detail",
           search: `?id=${this.props.id}`,
@@ -69,7 +73,15 @@ class Product extends Component {
             src={GreenCart}
           />
 
-          <div className={styles.imageContainer}>
+          <div
+            className={classNames(
+              styles.imageContainer,
+              !this.props.inStock && styles.outOfStockImageContainer
+            )}
+          >
+            {!this.props.inStock && (
+              <p className={styles.outOfStockText}>OUT OF STOCK</p>
+            )}
             <img
               className={styles.image}
               src={this.props.gallery[0]}
@@ -90,7 +102,8 @@ class Product extends Component {
               )
               ?.map((price) => (
                 <Fragment key={price.currency.symbol}>
-                  <span>{price.currency.symbol}</span> {price.amount}
+                  <span>{price.currency.symbol}</span>{" "}
+                  {Number(price.amount).toFixed(2)}
                 </Fragment>
               ))}
           </p>
