@@ -1,1 +1,1 @@
-export const URI = "https://tranquil-stream-11659.herokuapp.com/";
+export const URI = "https://ecommerce-server-l5tf.onrender.com/";
